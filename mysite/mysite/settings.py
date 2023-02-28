@@ -128,3 +128,14 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# EMAIL_BACKEND= 'django.core.mail.backends.console.EmailBackend'By using this\
+# setting, Django will output all emails to the shell instead of sending them.
+# This is very useful for testing your application without an SMTP server.
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+# Whoever wants can use it #1адтох кхоъ ворх ц1ера т1а
+EMAIL_HOST_USER = 'uchdjango@gmail.com'
+EMAIL_HOST_PASSWORD = 'lsppgxjdvlgwnvhw'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
