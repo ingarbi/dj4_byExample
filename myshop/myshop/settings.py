@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     "shop.apps.ShopConfig",
     "cart.apps.CartConfig",
     "orders.apps.OrdersConfig",
+    "payment.apps.PaymentConfig",
 ]
 
 MIDDLEWARE = [
@@ -102,6 +103,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "static"
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
@@ -115,4 +117,11 @@ CART_SESSION_ID = "cart"
 
 CELERY_BROKER_URL = "amqp://192.168.99.100"
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+STRIPE_PUBLISHABLE_KEY = "pk_test_51MkC7LKdiZB1jpjpwaXcppAOgvMChZZrUd0UpDjCPWoHxNSd9Wjf3PyaQ2UUSbjfTKYieDMq7XdpsZ7E9IABruBy00zkqFnJ8y"  # Publishable key
+STRIPE_SECRET_KEY = "sk_test_51MkC7LKdiZB1jpjpzEbqScLnX0eAWrGO9c3I5S9MeDo3LByISntmervadTEC1QvHhFCYWrbfdFcI8SEVhh6KdYug00Z9ZCMj18"  # Secret key
+STRIPE_API_VERSION = "2022-11-15"
+STRIPE_WEBHOOK_SECRET = (
+    "whsec_0d99f36f90d2fdd15cdd160fb420a463499d97e9810aeb6c107bea751ae830ce"
+)
