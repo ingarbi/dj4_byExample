@@ -10,11 +10,12 @@ from django.urls import reverse
 
 from .forms import OrderCreateForm
 from .models import Order, OrderItem
+import weasyprint
 from .tasks import order_created
 
 os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64")
 
-import weasyprint
+
 
 def order_create(request):
     cart = Cart(request)
