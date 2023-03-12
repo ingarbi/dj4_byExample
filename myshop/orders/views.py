@@ -13,7 +13,7 @@ from .models import Order, OrderItem
 import weasyprint
 from .tasks import order_created
 
-os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64")
+# os.add_dll_directory(r"C:\Program Files\GTK3-Runtime Win64")
 
 
 
@@ -22,7 +22,11 @@ def order_create(request):
     if request.method == "POST":
         form = OrderCreateForm(request.POST)
         if form.is_valid():
-            order = form.save()
+            order = form.save(commit=False)
+            if cart.coupon:
+                order.coupon = cart.coupon
+                order.discount = cart.coupon.discount
+            order.save()
             for item in cart:
                 OrderItem.objects.create(
                     order=order,
