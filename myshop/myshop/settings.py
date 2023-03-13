@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-_nwl+6iy#5m#&sz9g!uk!#g8)=r(4iut73ctjc%j1v*)$$76"
@@ -18,6 +20,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rosetta",
+    "parler",
+    "localflavor",
     "shop.apps.ShopConfig",
     "cart.apps.CartConfig",
     "orders.apps.OrdersConfig",
@@ -28,6 +33,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -128,6 +134,29 @@ STRIPE_WEBHOOK_SECRET = (
 )
 
 # Redis settings
-REDIS_HOST = 'localhost'
+REDIS_HOST = "localhost"
 REDIS_PORT = 6379
 REDIS_DB = 1
+
+LANGUAGES = [
+    ("en", _("English")),
+    ("ru", _("Russian")),
+    ("es", _("Spanish")),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
+
+# django-parler settings
+PARLER_LANGUAGES = {
+    None: (
+        {"code": "en"},
+        {"code": "ru"},
+        {"code": "es"},
+    ),
+    "default": {
+        "fallback": "en",
+        "hide_untranslated": False,
+    },
+}
